@@ -6,29 +6,16 @@
     <title>Concurso Mascote 2026 | Matriz Educação</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Cores personalizadas baseadas na identidade visual */
-        .text-matriz-green { color: #8CC63F; } 
-        .text-matriz-blue { color: #004F9E; }
-        .bg-matriz-blue { background-color: #004F9E; }
-        .bg-matriz-green { background-color: #8CC63F; }
-        .hover-bg-matriz-blue:hover { background-color: #003366; }
-        .hover-bg-matriz-green:hover { background-color: #6da02e; }
-        
-        /* Efeito hover suave para os cartões */
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15); 
-        }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
     
     <header class="bg-white shadow-md py-8 text-center border-b-4 border-[#8CC63F]">
-        <img src="assets/logo.jpg" alt="Logo Matriz Educação" class="h-24 mx-auto mb-4 object-contain">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-matriz-blue px-4">Concurso de Mascote e Nome Oficial 2026</h1>
+        <img src="logo.jpg" onerror="this.src='https://via.placeholder.com/300x100.png?text=Logo+Matriz+Educacao'" alt="Logo Matriz Educação" class="h-24 mx-auto mb-4 object-contain">
+        
+        <h1 class="text-3xl md:text-4xl font-extrabold text-[#004F9E] px-4">Concurso de Mascote e Nome Oficial 2026</h1>
         <p class="text-gray-600 mt-3 text-lg px-4 max-w-2xl mx-auto">Ajude a escolher o mascote e o nome que representarão oficialmente o Matriz Educação.</p>
     </header>
 
@@ -38,7 +25,7 @@
             <p class="text-gray-700 text-lg md:text-xl mb-8 italic">
                 "O Concurso de Mascote e Nome Oficial 2026 tem como finalidade selecionar propostas criativas, originais e inspiradoras que representem os valores educacionais do Matriz Educação."
             </p>
-            <button id="btn-iniciar" class="bg-matriz-blue hover-bg-matriz-blue text-white text-lg font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg flex items-center justify-center mx-auto">
+            <button id="btn-iniciar" class="bg-[#004F9E] hover:bg-[#003366] text-white text-lg font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg flex items-center justify-center mx-auto">
                 Participar da Votação
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -47,18 +34,18 @@
         </div>
 
         <div id="step-identificacao" class="hidden bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
-            <h2 class="text-2xl font-bold text-matriz-blue mb-6 border-b pb-3 flex items-center">
-                <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
+            <h2 class="text-2xl font-bold text-[#004F9E] mb-6 border-b pb-3 flex items-center">
+                <span class="bg-[#004F9E] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
                 Identificação do Participante
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2" for="aluno_nome">Nome Completo do Aluno <span class="text-red-500">*</span></label>
-                    <input type="text" id="aluno_nome" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] focus:border-transparent transition" placeholder="Ex: João Silva Santos">
+                    <label class="block text-gray-700 font-bold mb-2">Nome Completo do Aluno <span class="text-red-500">*</span></label>
+                    <input type="text" id="aluno_nome" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] transition" placeholder="Ex: João Silva Santos">
                 </div>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2" for="aluno_unidade">Unidade do Matriz <span class="text-red-500">*</span></label>
-                    <select id="aluno_unidade" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] focus:border-transparent transition">
+                    <label class="block text-gray-700 font-bold mb-2">Unidade do Matriz <span class="text-red-500">*</span></label>
+                    <select id="aluno_unidade" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] transition">
                         <option value="" disabled selected>Selecione a sua unidade</option>
                         <option value="Bangu">Bangu</option>
                         <option value="Campo Grande">Campo Grande</option>
@@ -72,7 +59,7 @@
                 </div>
             </div>
             <div class="mt-8 text-right">
-                <button id="btn-avancar-votacao" class="bg-matriz-green hover-bg-matriz-green text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow flex items-center inline-flex">
+                <button id="btn-avancar-votacao" class="bg-[#8CC63F] hover:bg-[#6da02e] text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow inline-flex items-center">
                     Avançar para Votação
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -84,43 +71,10 @@
         <div id="step-votacao" class="hidden">
             
             <div class="bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-matriz-blue mb-2 flex items-center">
-                    <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
+                <h2 class="text-2xl font-bold text-[#004F9E] mb-2 flex items-center">
+                    <span class="bg-[#004F9E] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
                     Escolha o Mascote
                 </h2>
                 <p class="text-gray-500 mb-6 ml-11">Selecione apenas <strong>um</strong> mascote clicando no cartão abaixo.</p>
-                
-                <div id="grid-mascotes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <div class="text-center py-10 col-span-full text-gray-400">A carregar mascotes...</div>
-                </div>
+                <div id="grid-mascotes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
             </div>
-
-            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-matriz-blue mb-2 flex items-center">
-                    <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3</span>
-                    Escolha o Nome Oficial
-                </h2>
-                <p class="text-gray-500 mb-6 ml-11">Selecione apenas <strong>um</strong> nome clicando no cartão abaixo.</p>
-                
-                <div id="grid-nomes" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    <div class="text-center py-10 col-span-full text-gray-400">A carregar nomes...</div>
-                </div>
-            </div>
-
-            <div class="text-center mt-10 mb-10">
-                <button id="btn-confirmar-voto" class="bg-matriz-blue hover-bg-matriz-blue text-white text-xl font-bold py-5 px-12 rounded-full shadow-xl transition duration-300 w-full md:w-auto transform hover:scale-105">
-                    Confirmar o Meu Voto
-                </button>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="bg-gray-800 text-white py-6 text-center mt-auto">
-        <p class="text-sm">© 2026 Matriz Educação. Todos os direitos reservados.</p>
-        <p class="text-xs text-gray-400 mt-1">Concurso de Mascote e Nome Oficial</p>
-    </footer>
-
-    <script src="js/app.js"></script>
-</body>
-</html>
