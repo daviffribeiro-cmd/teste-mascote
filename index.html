@@ -4,28 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concurso Mascote 2026 | Matriz Educação</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15); }
+        /* Estilos robustos de fallback para garantir o funcionamento das cores */
+        .bg-matriz-blue { background-color: #004F9E !important; }
+        .bg-matriz-green { background-color: #8CC63F !important; }
+        .text-matriz-blue { color: #004F9E !important; }
+        
+        .card-hover { transition: all 0.2s ease-in-out; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* Classes de seleção CORRIGIDAS (CSS Puro para não depender do compilador do Tailwind) */
+        .mascote-selecionado {
+            border-color: #004F9E !important;
+            border-width: 4px !important;
+            background-color: #f0f7ff !important;
+        }
+        .nome-selecionado {
+            border-color: #8CC63F !important;
+            border-width: 4px !important;
+            background-color: #f4fce8 !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
     
+    <!-- Cabeçalho -->
     <header class="bg-white shadow-md py-8 text-center border-b-4 border-[#8CC63F]">
-        <img src="logo.jpg" onerror="this.src='https://via.placeholder.com/300x100.png?text=Logo+Matriz+Educacao'" alt="Logo Matriz Educação" class="h-24 mx-auto mb-4 object-contain">
-        
-        <h1 class="text-3xl md:text-4xl font-extrabold text-[#004F9E] px-4">Concurso de Mascote e Nome Oficial 2026</h1>
+        <!-- Imagem da logo oficial -->
+        <img src="logo.jpg" onerror="this.src='https://via.placeholder.com/300x100.png?text=Matriz+Educação'" alt="Logo Matriz Educação" class="h-24 mx-auto mb-4 object-contain">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-matriz-blue px-4">Concurso de Mascote e Nome Oficial 2026</h1>
         <p class="text-gray-600 mt-3 text-lg px-4 max-w-2xl mx-auto">Ajude a escolher o mascote e o nome que representarão oficialmente o Matriz Educação.</p>
     </header>
 
-    <main class="flex-grow max-w-5xl mx-auto py-10 px-4 w-full" id="app">
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow max-w-5xl mx-auto py-10 px-4 w-full">
         
-        <div id="step-inicio" class="bg-white p-8 md:p-12 rounded-2xl shadow-sm text-center mb-8 border border-gray-100">
+        <!-- TELA 0: Explicação Inicial -->
+        <div id="step-inicio" class="bg-white p-8 md:p-12 rounded-2xl shadow-sm text-center border border-gray-100">
             <p class="text-gray-700 text-lg md:text-xl mb-8 italic">
                 "O Concurso de Mascote e Nome Oficial 2026 tem como finalidade selecionar propostas criativas, originais e inspiradoras que representem os valores educacionais do Matriz Educação."
             </p>
-            <button id="btn-iniciar" class="bg-[#004F9E] hover:bg-[#003366] text-white text-lg font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg flex items-center justify-center mx-auto">
+            <button id="btn-iniciar" class="bg-matriz-blue hover:opacity-90 text-white text-lg font-bold py-4 px-10 rounded-full transition duration-300 shadow-lg flex items-center justify-center mx-auto">
                 Participar da Votação
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -33,19 +54,20 @@
             </button>
         </div>
 
-        <div id="step-identificacao" class="hidden bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
-            <h2 class="text-2xl font-bold text-[#004F9E] mb-6 border-b pb-3 flex items-center">
-                <span class="bg-[#004F9E] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
+        <!-- TELA 1: Identificação do Votante (Escondida por padrão) -->
+        <div id="step-identificacao" class="hidden bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 class="text-2xl font-bold text-matriz-blue mb-6 border-b pb-3 flex items-center">
+                <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
                 Identificação do Participante
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Nome Completo do Aluno <span class="text-red-500">*</span></label>
-                    <input type="text" id="aluno_nome" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] transition" placeholder="Ex: João Silva Santos">
+                    <input type="text" id="aluno_nome" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E]" placeholder="Digite o nome completo">
                 </div>
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Unidade do Matriz <span class="text-red-500">*</span></label>
-                    <select id="aluno_unidade" required class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E] transition">
+                    <select id="aluno_unidade" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#004F9E]">
                         <option value="" disabled selected>Selecione a sua unidade</option>
                         <option value="Bangu">Bangu</option>
                         <option value="Campo Grande">Campo Grande</option>
@@ -59,7 +81,7 @@
                 </div>
             </div>
             <div class="mt-8 text-right">
-                <button id="btn-avancar-votacao" class="bg-[#8CC63F] hover:bg-[#6da02e] text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow inline-flex items-center">
+                <button id="btn-avancar-votacao" class="bg-matriz-green hover:opacity-90 text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow inline-flex items-center">
                     Avançar para Votação
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -68,13 +90,141 @@
             </div>
         </div>
 
+        <!-- TELA 2: Painel de Votação (Escondida por padrão) -->
         <div id="step-votacao" class="hidden">
-            
+            <!-- Grid de Mascotes -->
             <div class="bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
-                <h2 class="text-2xl font-bold text-[#004F9E] mb-2 flex items-center">
-                    <span class="bg-[#004F9E] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
+                <h2 class="text-2xl font-bold text-matriz-blue mb-2 flex items-center">
+                    <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
                     Escolha o Mascote
                 </h2>
-                <p class="text-gray-500 mb-6 ml-11">Selecione apenas <strong>um</strong> mascote clicando no cartão abaixo.</p>
-                <div id="grid-mascotes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+                <p class="text-gray-500 mb-6 ml-11">Clique sobre o cartão do seu mascote favorito (Apenas 1 opção).</p>
+                <div id="grid-mascotes" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
             </div>
+
+            <!-- Grid de Nomes -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8 border border-gray-100">
+                <h2 class="text-2xl font-bold text-matriz-blue mb-2 flex items-center">
+                    <span class="bg-matriz-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3</span>
+                    Escolha o Nome Oficial
+                </h2>
+                <p class="text-gray-500 mb-6 ml-11">Clique sobre o cartão do nome que mais combina com o Matriz (Apenas 1 opção).</p>
+                <div id="grid-nomes" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+            </div>
+
+            <!-- Envio -->
+            <div class="text-center mt-10 mb-10">
+                <button id="btn-confirmar-voto" class="bg-matriz-blue hover:opacity-90 text-white text-xl font-bold py-5 px-12 rounded-full shadow-xl transition duration-300 w-full md:w-auto">
+                    Confirmar o Meu Voto
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Rodapé com Identificador de Versão -->
+    <footer class="bg-gray-800 text-white py-6 text-center mt-auto">
+        <p class="text-sm">© 2026 Matriz Educação. Todos os direitos reservados.</p>
+        <span class="inline-block mt-2 bg-gray-700 text-gray-400 text-[10px] font-mono px-2 py-1 rounded">VERSÃO CORRIGIDA 2.0</span>
+    </footer>
+
+    <!-- LOGICA JAVASCRIPT CORRIGIDA (Sem onclick embutido para evitar falhas de escopo) -->
+    <script>
+        let votoState = { mascote_id: null, nome_id: null };
+
+        // Transição da Tela Inicial para Identificação
+        document.getElementById('btn-iniciar').addEventListener('click', function() {
+            document.getElementById('step-inicio').classList.add('hidden');
+            document.getElementById('step-identificacao').classList.remove('hidden');
+        });
+
+        // Validação e Transição para a Votação Real
+        document.getElementById('btn-avancar-votacao').addEventListener('click', function() {
+            const nomeInput = document.getElementById('aluno_nome').value.trim();
+            const unidadeInput = document.getElementById('aluno_unidade').value;
+
+            if (nomeInput === "" || unidadeInput === "") {
+                alert("Por favor, preencha o seu nome completo e escolha uma unidade antes de prosseguir.");
+                return;
+            }
+
+            document.getElementById('step-identificacao').classList.add('hidden');
+            document.getElementById('step-votacao').classList.remove('hidden');
+            renderizarOpcoes();
+        });
+
+        // Função de renderização das opções de voto
+        function renderizarOpcoes() {
+            // 1. Renderizar Mascotes (Substitua as imagens pelos arquivos reais da sua pasta)
+            const mascotesDisponiveis = [
+                { id: 1, img: "mascote1.jpg" },
+                { id: 2, img: "mascote2.jpg" },
+                { id: 3, img: "mascote3.jpg" },
+                { id: 4, img: "mascote4.jpg" }
+            ];
+
+            const gridMascotes = document.getElementById('grid-mascotes');
+            gridMascotes.innerHTML = mascotesDisponiveis.map(m => `
+                <div class="bg-white border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer card-hover item-mascote" data-id="${m.id}">
+                    <div class="w-full h-48 bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                        <!-- Caso a imagem não exista na pasta ainda, exibe um fallback elegante -->
+                        <img src="assets/mascotes/${m.img}" onerror="this.src='https://via.placeholder.com/150?text=Mascote+${m.id}'" alt="Mascote ${m.id}" class="object-contain h-full w-full">
+                    </div>
+                    <span class="font-extrabold text-gray-700 text-lg">Mascote Opção #${m.id}</span>
+                </div>
+            `).join('');
+
+            // Adicionar eventos de clique nos cards de mascotes via Dataset
+            document.querySelectorAll('.item-mascote').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.item-mascote').forEach(c => c.classList.remove('mascote-selecionado'));
+                    this.classList.add('mascote-selecionado');
+                    votoState.mascote_id = this.getAttribute('data-id');
+                });
+            });
+
+            // 2. Renderizar Nomes Oficiais extraídos da sua planilha Excel
+            const listaNomes = ["ARATRIX", "Bambu", "Trix", "Maximus", "Valentriz", "Raizinho", "Téo", "Max Matriz", "Mati", "Matias", "Triz", "Oritriz", "Alfredo", "MAVI", "Edu", "Valente"];
+            const gridNomes = document.getElementById('grid-nomes');
+            
+            gridNomes.innerHTML = listaNomes.map((nome, idx) => `
+                <div class="bg-white border-2 border-gray-200 rounded-xl p-4 text-center cursor-pointer card-hover item-nome font-bold text-gray-700" data-id="${idx}">
+                    ${nome}
+                </div>
+            `).join('');
+
+            // Adicionar eventos de clique nos cards de nomes
+            document.querySelectorAll('.item-nome').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.item-nome').forEach(c => c.classList.remove('nome-selecionado'));
+                    this.classList.add('nome-selecionado');
+                    votoState.nome_id = this.getAttribute('data-id');
+                });
+            });
+        }
+
+        // Ação do Botão Final de Confirmação
+        document.getElementById('btn-confirmar-voto').addEventListener('click', function() {
+            if (votoState.mascote_id === null || votoState.nome_id === null) {
+                alert("Atenção! Você precisa escolher 1 Mascote e também 1 Nome antes de confirmar.");
+                return;
+            }
+
+            if (confirm("Deseja confirmar o seu voto agora? Não será possível alterá-lo depois.")) {
+                document.getElementById('step-votacao').innerHTML = `
+                    <div class="text-center py-16 bg-white rounded-2xl shadow-sm border border-gray-100 max-w-md mx-auto">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-matriz-blue mb-2">Voto Registrado!</h2>
+                        <p class="text-gray-600 px-6">Seu voto foi registrado com sucesso. Obrigado por participar do Concurso de Mascote e Nome Oficial 2026.</p>
+                    </div>`;
+            }
+        });
+    </script>
+</body>
+</html>
